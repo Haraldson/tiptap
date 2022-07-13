@@ -9,17 +9,21 @@ export interface NodeViewWrapperProps {
 
 export const NodeViewWrapper: React.FC<NodeViewWrapperProps> = React.forwardRef((props, ref) => {
   const { onDragStart } = useReactNodeView()
-  const Tag = props.as || 'div'
+  
+  const {
+    as: Tag = 'div',
+    ...attrs
+  } = props
 
   return (
     <Tag
-      {...props}
+      {...attrs}
       ref={ref}
       data-node-view-wrapper=""
       onDragStart={onDragStart}
       style={{
         whiteSpace: 'normal',
-        ...props.style,
+        ...attrs.style,
       }}
     />
   )
